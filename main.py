@@ -103,6 +103,8 @@ RPM_spin = 3 # RPM
 P_spin = 60 / RPM_spin
 omega_spin = 2 * np.pi / P_spin
 
+
+## Functions
 # Sunlight/Eclipse function
 def sunlit(t):
     phase = (t % P_orbit) / P_orbit
@@ -126,8 +128,6 @@ def derivatives(t, T_faces, T_internal):
         [ 0,  0,  1], # +Z face (4)
         [ 0,  0, -1], # -Z face (5)
     ])
-
-
 
     ## Spin kinematics: spin about body Y-axis
     theta = omega_spin * t  # angle [rad]
@@ -166,7 +166,7 @@ def derivatives(t, T_faces, T_internal):
     Earth_cosine = np.maximum(Earth_cosine, 0.0)
 
     ## Conduction stuff
-    # Nearby faces list for conduction
+    # Nearby faces list for conduction (What faces touch each other)
     Nearby_faces = {
         0: [2, 3, 4, 5],
         1: [2, 3, 4, 5],
